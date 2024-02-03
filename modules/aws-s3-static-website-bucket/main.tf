@@ -40,13 +40,13 @@ resource "aws_s3_bucket_public_access_block" "s3web" {
 
 resource "aws_s3_bucket_acl" "s3web" {
   depends_on = [ aws_s3_bucket_ownership_controls.s3web,
-  aws_S3_bucket_public_access_block.s3web ]
+  aws_s3_bucket_public_access_block.s3web ]
   bucket = aws_s3_bucket.s3web.id
-  acl = "public_read"
+  acl = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "s3web" {
-  bucket = aws_s3_bucket.mywebsite.id
+  bucket = aws_s3_bucket.s3web.id
 
   policy = <<EOF
 {
